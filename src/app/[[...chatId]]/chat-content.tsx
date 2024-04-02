@@ -16,7 +16,9 @@ export default function ChatContent({
   createChat: CreateChat
   initialAssistantResponse?: string
 }) {
-  const [assisnantResponse, setAssistantResponse] = useState(initialAssistantResponse)
+  const [assisnantResponse, setAssistantResponse] = useState(
+    initialAssistantResponse
+  )
   const [isLoading, setIsLoading] = useState(false)
   const abortControllerRef = useRef<AbortController | null>(null)
   const [chatId, setChatId] = useState("")

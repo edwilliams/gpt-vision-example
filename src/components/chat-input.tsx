@@ -1,39 +1,39 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import GrowingTextArea from "./growing-text-area";
-import { cn } from "@/lib/utils";
+import { useState } from "react"
+import GrowingTextArea from "./growing-text-area"
+import { cn } from "@/lib/utils"
 
-import ImageSelection from "./image-selection";
+import ImageSelection from "./image-selection"
 
 export default function ExpandingInput({
   onSubmit,
   onStop,
   isStreaming,
 }: {
-  onSubmit?: (value: string, file?: File) => void;
-  onStop?: () => void;
-  isStreaming?: boolean;
+  onSubmit?: (value: string, file?: File) => void
+  onStop?: () => void
+  isStreaming?: boolean
 }) {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("")
   const [selectedImage, setSelectedImage] = useState<File | undefined>(
     undefined
-  );
+  )
 
   const submit = (value: string) => {
-    onSubmit?.(value, selectedImage);
-    setContent("");
-    setSelectedImage(undefined);
-  };
+    onSubmit?.(value, selectedImage)
+    setContent("")
+    setSelectedImage(undefined)
+  }
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    submit(content);
-  };
+    e.preventDefault()
+    submit(content)
+  }
 
-  const buttonDisabled = content.length === 0 || isStreaming;
+  const buttonDisabled = content.length === 0 || isStreaming
 
   return (
-    <div className="w-full my-10">
+    <div className="absolute w-full bottom-0 mb-4">
       <form
         onSubmit={handleSubmit}
         className="w-full flex flex-col gap-y-4 px-4 relative max-w-5xl mx-auto"
@@ -43,7 +43,7 @@ export default function ExpandingInput({
           setSelectedImage={setSelectedImage}
         />
         <GrowingTextArea
-          className="w-full bg-transparent border border-gray-500 rounded-2xl outline-none resize-none pl-12 pr-14 py-4 scrollbar-content overflow-y-auto overflow-x-clip overscroll-contain"
+          className="bg-black/50 w-full border border-gray-500 rounded-2xl outline-none resize-none pl-12 pr-14 py-4 scrollbar-content overflow-y-auto overflow-x-clip overscroll-contain"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
@@ -85,5 +85,5 @@ export default function ExpandingInput({
         )}
       </form>
     </div>
-  );
+  )
 }
